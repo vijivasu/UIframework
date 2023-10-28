@@ -4,7 +4,11 @@
   <test thread-count="5" name="Test">
     <classes>
     <class name ="com.w3schools.utils.SeWrappers"/>
-      <class name="com.w3schools.tests.LoginTest"/>
+    <class name ="com.w3schools.utils.W3Wrappers"/>
+    <class name="com.w3schools.tests.LoginTest"/>
     </classes>
-  </test> <!-- Test -->
+ 
+    	
+    </test>
+    
 </suite> <!-- Suite -->

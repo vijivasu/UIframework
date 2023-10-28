@@ -20,11 +20,16 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.BeforeTest;
+
+import com.w3schools.pages.HomePage;
+import com.w3schools.pages.LoginPage;
 
 public class SeWrappers {
 
@@ -32,13 +37,13 @@ public class SeWrappers {
 	// selenium. We are going to create cusomized methods for all selenium built in
 	// methods
 
-	public static RemoteWebDriver driver = null;
-	//public static WebDriver driver = null;
+	//public static RemoteWebDriver driver = null;
+	public static WebDriver driver = null;
 	public static WebElement verifyTitle;
 	public JavascriptExecutor jsExecutor;
-
-	//Launching and closing the Browser
 	
+	//Launching and closing the Browser
+
 	public static void launchBrowser(String browser, String url) {
 		try {
 			if (browser.equalsIgnoreCase("chrome")) {
@@ -418,7 +423,7 @@ public class SeWrappers {
 		//TakesScreenshot 
 		
 		try {
-			File srcFile =  driver.getScreenshotAs(OutputType.FILE);
+			File srcFile =  ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 			File destinationPath = new File("./UIFramework/Screenshot" +ScreenshotName+ ".png");
 			//FileHandler.copy(srcFile, destinationPath);
 			FileUtils.copyFile(srcFile,destinationPath);
@@ -433,7 +438,7 @@ public class SeWrappers {
 //********************************************************************************************************************************************
 	public void typeText(WebElement ele, String text) {
 		try {
-			waitForElement(ele, 20);
+			//waitForElement(ele, 20);
 			ele.sendKeys(text);
 		} catch (Exception ex) {
 			ex.printStackTrace();

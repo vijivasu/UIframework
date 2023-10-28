@@ -8,10 +8,15 @@ import com.w3schools.utils.SeWrappers;
 public class HomePage extends SeWrappers {
 
 @FindBy(xpath="//div[text()='My learning']")
-private WebElement HomepageTitle;
+private WebElement homepageLabel;
 
-public WebElement getHomepageTitle() {
-	return HomepageTitle;
+public WebElement getHomepageLabel() {
+	return homepageLabel;
+}
+
+public void waitForLearning()
+{
+	waitForElement(homepageLabel,20);
 }
 
 }

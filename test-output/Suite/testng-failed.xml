@@ -5,7 +5,7 @@
     <classes>
       <class name="com.w3schools.tests.LoginTest">
         <methods>
-          <include name="loginWithvalidCredentials"/>
+          <include name="loginWithvalidCredentials" invocation-numbers="1"/>
         </methods>
       </class> <!-- com.w3schools.tests.LoginTest -->
     </classes>
