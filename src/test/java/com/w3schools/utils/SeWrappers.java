@@ -54,9 +54,11 @@ public class SeWrappers {
 			driver.get(url);
 			driver.manage().window().maximize();
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+			Reports.reportStep("PASS", "Browser has been launched successfully");
 
 		} catch (Exception ex) {
 			System.out.println("Problem while launching the browser");
+			Reports.reportStep("FAIL", "Problem while launching the browser");
 			ex.printStackTrace();
 		}
 	}
@@ -64,7 +66,11 @@ public class SeWrappers {
 	public void closeBrowser() {
 		try {
 			driver.close();
+			Reports.reportStep("PASS", "Browser has been closed successfully");
+
 		} catch (Exception ex) {
+			Reports.reportStep("FAIL", "Problem while closing the Browser ");
+
 			ex.printStackTrace();
 		}
 	}
@@ -72,7 +78,11 @@ public class SeWrappers {
 	public void closeAllBrowsers() {
 		try {
 			driver.quit();
+			Reports.reportStep("PASS", "Browsers has been closed successfully");
+
 		} catch (Exception ex) {
+			Reports.reportStep("FAIL", "Problem while closing the Browsers ");
+
 			ex.printStackTrace();
 		}
 	}
@@ -83,22 +93,11 @@ public class SeWrappers {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
 			wait.until(ExpectedConditions.visibilityOf(ele));
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-
-	}
-
-	// public void pollingWait(WebElement ele)
-
-	public void pollingWait(WebElement ele, int timeout, int pollingFrequency) {
-		try {
-			Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(timeout))
-					.pollingEvery(Duration.ofSeconds(pollingFrequency));
-
+			Reports.reportStep("PASS", "Successfully identified the element");
 			wait.until(ExpectedConditions.visibilityOf(ele));
 		} catch (Exception ex) {
+			Reports.reportStep("FAIL", "Problem while identifying the element");
+
 			ex.printStackTrace();
 		}
 	}
@@ -111,10 +110,12 @@ public class SeWrappers {
 		try {
 			WebElement dd = driver.findElement(By.name(visibleText));
 			Select dropdown = new Select(dd);
-			dropdown.selectByValue(visibleText);
-			System.out.println("The dropdown is selected by Visible Text" + visibleText);
+			dropdown.selectByVisibleText(visibleText);
+			Reports.reportStep("PASS", "Text is visible and selected from dropdpwn");
+			//System.out.println("The dropdown is selected by Visible Text" + visibleText);
 		} catch (Exception e) {
 			e.printStackTrace();
+			Reports.reportStep("FAIL", "Text is not visible");
 		}
 
 	}
@@ -123,10 +124,11 @@ public class SeWrappers {
 		try {
 			Select dropdown = new Select(element);
 			dropdown.selectByValue(text);
+			Reports.reportStep("PASS", "Textvalue is visible and selected from dropdpwn");
 		} catch (Exception e) {
 			e.printStackTrace();
+			Reports.reportStep("FAIL", "Textvalue is not visible");
 		}
-		
 	}
 
 	public void SelectbyIndex(String id, int value) {
@@ -134,9 +136,11 @@ public class SeWrappers {
 			WebElement dd = driver.findElement(By.id(id));
 			Select dropdown = new Select(dd);
 			dropdown.selectByIndex(value);
+			Reports.reportStep("PASS", "TextIndex is visible and selected from dropdpwn");
 			System.out.println("The dropdown is selected by index" + value);
 		} catch (Exception e) {
 			e.printStackTrace();
+			Reports.reportStep("FAIL", "TextIndex is not visible");
 		}
 
 	}
@@ -148,9 +152,11 @@ public class SeWrappers {
 		try {
 			Actions actionsClass = new Actions(driver);
 			actionsClass.click(element).build().perform();
-			System.out.println("Click action is performed sucessfully");
+			Reports.reportStep("PASS", "Click action is performed sucessfully");
+			//System.out.println("Click action is performed sucessfully");
 		} catch (Exception e) {
 			e.printStackTrace();
+			Reports.reportStep("FAIL", "Click action is not performed");
 		}
 
 	}
@@ -159,9 +165,11 @@ public class SeWrappers {
 		try {
 			Actions actionClass = new Actions(driver);
 			actionClass.doubleClick(element).build().perform();
-			System.out.println("Double Click action is performed sucessfully");
+			Reports.reportStep("PASS", "DoubleClick action is performed sucessfully");
+			//System.out.println("Double Click action is performed sucessfully");
 		} catch (Exception e) {
 			e.printStackTrace();
+			Reports.reportStep("FAIL", "DoubleClick action is not performed sucessfully");
 		}
 
 	}
@@ -170,9 +178,11 @@ public class SeWrappers {
 		try {
 			Actions actionClass = new Actions(driver);
 			actionClass.moveToElement(element).build().perform();
-			System.out.println("Move to Element action is performed sucessfully");
+			Reports.reportStep("PASS", "Move to Element action is performed sucessfully");
+			//System.out.println("Move to Element action is performed sucessfully");
 		} catch (Exception e) {
 			e.printStackTrace();
+			Reports.reportStep("FAIL", "Move to Element action is not performed sucessfully");
 		}
 
 	}
@@ -182,10 +192,12 @@ public class SeWrappers {
 		try {
 			Actions actionClass = new Actions(driver);
 			actionClass.contextClick().build().perform();
-			System.out.println("Right Click action is performed sucessfully");
+			Reports.reportStep("PASS", "RightClick action is performed sucessfully");
+			//System.out.println("Right Click action is performed sucessfully");
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			Reports.reportStep("FAIL", "RightClick action is not performed sucessfully");
 		}
 	}
 
@@ -194,10 +206,12 @@ public class SeWrappers {
 		try {
 			Actions actionClass = new Actions(driver);
 			actionClass.dragAndDrop(element1, element2);
-			System.out.println("Drag and Drop action is performed sucessfully");
+			Reports.reportStep("PASS", "Drag and Drop action is performed sucessfully");
+			//System.out.println("Drag and Drop action is performed sucessfully");
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			Reports.reportStep("FAIL", "Drag and Drop action is not performed sucessfully");
 		}
 	}
 	// clickAndHold
@@ -205,7 +219,8 @@ public class SeWrappers {
 	public void clickAndHold(WebElement element) {
 		Actions actionClass = new Actions(driver);
 		actionClass.clickAndHold(element);
-		System.out.println("Click and hold action is performed sucessfully");
+		Reports.reportStep("PASS", "Click and Hold action is performed sucessfully");
+		//System.out.println("Click and hold action is performed sucessfully");
 
 	}
 
@@ -227,10 +242,12 @@ public class SeWrappers {
 
 	// displayed needs to be changed)
 	public boolean isDisabled(String id) {
+		boolean retVal = true;
+		
 		try {
 			WebElement element = driver.findElement(By.id(id));
-			boolean isDisabled = element.isDisplayed();
-			System.out.println("The element is " + isDisabled);
+			retVal = element.isDisplayed();
+			System.out.println("The element is " + retVal);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -274,6 +291,22 @@ public class SeWrappers {
 	
 	// frames
 	
+	public void switchToFramebyID(int FrameID) {
+		driver.switchTo().frame(FrameID);
+	}
+	
+	public void switchToFramebyIndex(int frameindex) {
+		driver.switchTo().frame(frameindex);
+	}
+	public void switchToFramebyName(String frameByName) {
+		driver.switchTo().frame(frameByName);
+	}
+	public void switchToFramebyElement(WebElement element) {
+		driver.switchTo().frame(element);
+	}
+	public void switchToDefaultcontent() {
+		driver.switchTo().defaultContent();
+	}
 	
 
 //********************************************************************************************************************************************
@@ -281,12 +314,15 @@ public class SeWrappers {
 	// window handling
 	public void switchToWindow(String windowTitle) {
 		try {
+			String mainWindowHandle = driver.getWindowHandle(); 
 			Set<String> winhandles = driver.getWindowHandles();
 			for (String winhandle : winhandles) {
 				driver.switchTo().window(winhandle);
 				if (driver.getTitle().equals(windowTitle))
-					break;
-
+					System.out.println("The tile of the current window:" +windowTitle);;
+					
+					driver.switchTo().window(mainWindowHandle);
+					System.out.println("Title of the current Window:" +driver.getTitle());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -294,12 +330,32 @@ public class SeWrappers {
 
 	}
 
-	public void switchToChildWindow() {
+	public void switchToChildWindow(String WindowTitle) {
+		
+	try {
+		Set<String> windowHandles = driver.getWindowHandles();
+		for(String winhandle : windowHandles) {
+			driver.switchTo().window(winhandle);
+			if(driver.getTitle().equals(WindowTitle))
+				System.out.println("The tile of the child window:" +WindowTitle);
+			driver.close();
+		}
+		
+	}catch(Exception ex) {
+		ex.printStackTrace();
+	}
 
 	}
 
 	public void switchToLastWindow() {
-
+		String lastWindowHandle = null;
+		Set<String> winHandles = driver.getWindowHandles();
+		
+		for(String winHandle : winHandles) {
+			 lastWindowHandle = winHandle;
+		}
+		
+		driver.switchTo().window(lastWindowHandle);
 	}
 
 //********************************************************************************************************************************************
@@ -440,10 +496,24 @@ public class SeWrappers {
 		try {
 			//waitForElement(ele, 20);
 			ele.sendKeys(text);
+			Reports.reportStep("PASS", "Successfully types the text in the element");
+
 		} catch (Exception ex) {
 			ex.printStackTrace();
+			Reports.reportStep("FAIL", "Problem while typing the text in the element");
+
 		}
 	}
+
+
+public void sendkeys(WebElement ele) {
+	try {
+		ele.sendKeys(Keys.ENTER);
+	}catch(Exception ex) {
+		ex.printStackTrace();
+	}
+		
+}
 
 //********************************************************************************************************************************************	
 

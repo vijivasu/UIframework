@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="1" total="3" passed="2" failed="0" skipped="0">
+<testng-results ignored="2" total="3" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-10-28T10:13:25 IST" name="Suite" finished-at="2023-10-28T10:14:53 IST" duration-ms="88495">
+  <suite started-at="2023-11-29T22:46:24 IST" name="Default suite" finished-at="2023-11-29T22:46:44 IST" duration-ms="19813">
     <groups>
     </groups>
-    <test started-at="2023-10-28T10:13:25 IST" name="Test" finished-at="2023-10-28T10:13:25 IST" duration-ms="14">
-    </test> <!-- Test -->
-    <test started-at="2023-10-28T10:13:25 IST" name="UIFramework" finished-at="2023-10-28T10:14:53 IST" duration-ms="88413">
+    <test started-at="2023-11-29T22:46:24 IST" name="Default test" finished-at="2023-11-29T22:46:44 IST" duration-ms="19813">
       <class name="com.w3schools.tests.LoginTest">
-        <test-method signature="loginwithInvalidCredentials(java.lang.String,java.lang.String)[pri:0, instance:com.w3schools.tests.LoginTest@8519cb4]" started-at="2023-10-28T10:13:25 IST" name="loginwithInvalidCredentials" data-provider="testDataForLogin" finished-at="2023-10-28T10:14:40 IST" duration-ms="75305" status="PASS">
+        <test-method signature="clickBrowseTutorialLink(java.lang.String,java.lang.String)[pri:0, instance:com.w3schools.tests.LoginTest@25ce9dc4]" started-at="2023-11-29T22:46:24 IST" name="clickBrowseTutorialLink" data-provider="testDataForLogin" finished-at="2023-11-29T22:46:44 IST" duration-ms="19750" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -24,24 +22,8 @@
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- loginwithInvalidCredentials -->
-        <test-method signature="loginwithInvalidCredentials(java.lang.String,java.lang.String)[pri:0, instance:com.w3schools.tests.LoginTest@8519cb4]" started-at="2023-10-28T10:14:40 IST" name="loginwithInvalidCredentials" data-provider="testDataForLogin" finished-at="2023-10-28T10:14:53 IST" duration-ms="13061" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[vijivasuteju@gmail.com]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[Saisai@31]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- loginwithInvalidCredentials -->
+        </test-method> <!-- clickBrowseTutorialLink -->
       </class> <!-- com.w3schools.tests.LoginTest -->
-    </test> <!-- UIFramework -->
-  </suite> <!-- Suite -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>
