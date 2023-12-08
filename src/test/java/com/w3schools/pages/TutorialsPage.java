@@ -27,8 +27,8 @@ public class TutorialsPage extends SeWrappers {
 		sendkeys(search);
 	}
 	
-	public void javaResults() {
-		String desiredCourse ="Learn Java";
+	public void javaResults(String desiredCourse) {
+		desiredCourse ="Learn Java";
 		WebElement javaResults = driver.findElement(By.xpath("//div[@class='card-groups multi-row-group']"));
 		
 		List<WebElement> oneResults = javaResults.findElements(By.tagName("div"));

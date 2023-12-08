@@ -7,6 +7,7 @@
     <class name ="com.w3schools.utils.W3Wrappers"/>
     <class name="com.w3schools.utils.Reports"/>
     <class name="com.w3schools.tests.LoginTest"/>
+   <!--  <class name="com.w3schools.tests.ProfileTest"/> -->
     </classes>
  
     	

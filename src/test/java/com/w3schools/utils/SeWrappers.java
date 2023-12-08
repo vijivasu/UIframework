@@ -40,8 +40,8 @@ public class SeWrappers {
 	//public static RemoteWebDriver driver = null;
 	public static WebDriver driver = null;
 	public static WebElement verifyTitle;
-	public JavascriptExecutor jsExecutor;
-	
+	public static JavascriptExecutor jsExecutor = (JavascriptExecutor)driver;
+	public static Reports reports;
 	//Launching and closing the Browser
 
 	public static void launchBrowser(String browser, String url) {
@@ -364,6 +364,7 @@ public class SeWrappers {
 	
 	public void scrollUp() {
 		try {
+			JavascriptExecutor jsExecutor = (JavascriptExecutor)driver;
 			jsExecutor.executeScript("window.ScrollTo(0,-document.body.scrollHeight);");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -373,6 +374,7 @@ public class SeWrappers {
 
 	public void scrollDown() {
 		try {
+			JavascriptExecutor jsExecutor = (JavascriptExecutor)driver;
 			jsExecutor.executeScript("window.ScrollTo(0,document.body.scrollHeight);");
 		} catch (Exception e) {
 
@@ -382,6 +384,7 @@ public class SeWrappers {
 
 	public void scrollLeft() {
 		try {
+			JavascriptExecutor jsExecutor = (JavascriptExecutor)driver;
 			jsExecutor.executeScript("windows.ScrollTo(-document.body.scrollWidth,0);");
 		} catch (Exception e) {
 
@@ -391,6 +394,7 @@ public class SeWrappers {
 
 	public void scrollRight() {
 		try {
+			JavascriptExecutor jsExecutor = (JavascriptExecutor)driver;
 			jsExecutor.executeScript("windws.ScrollTo(document.body.scrollWidth,0);");
 		} catch (Exception e) {
 
@@ -400,7 +404,9 @@ public class SeWrappers {
 
 	public String getTitle() {
 		String title="";
+		JavascriptExecutor jsExecutor = (JavascriptExecutor)driver;
 		try {
+			
 			 title= jsExecutor.executeScript("return document.title;").toString();
 		} catch (Exception e) {
 
@@ -411,6 +417,7 @@ public class SeWrappers {
 
 	public void clickWithJavaScript(WebElement element) {
 		try {
+			JavascriptExecutor jsExecutor = (JavascriptExecutor)driver;
 			jsExecutor.executeScript("argument[0].click();", element);
 		} catch (Exception e) {
 
@@ -420,6 +427,7 @@ public class SeWrappers {
 	
 	public void scrollToElementJavaScript(WebElement element) {
 		try {
+			JavascriptExecutor jsExecutor = (JavascriptExecutor)driver;
 			jsExecutor.executeScript("argument[0].scrollIntoView(true);", element);
 		} catch (Exception e) {
 

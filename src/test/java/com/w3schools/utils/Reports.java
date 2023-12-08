@@ -44,6 +44,7 @@ public class Reports
 	{
 		try
 		{
+			extentReport= new ExtentReports();
 			extentTest=extentReport.createTest(testcaseName);
 			
 		}

@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.w3schools.tests.LoginTest">
+      <class name="com.w3schools.tests.ProfileTest">
         <methods>
-          <include name="loginWithvalidCredentials" invocation-numbers="0"/>
+          <include name="profilevalidation" invocation-numbers="0"/>
         </methods>
-      </class> <!-- com.w3schools.tests.LoginTest -->
+      </class> <!-- com.w3schools.tests.ProfileTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

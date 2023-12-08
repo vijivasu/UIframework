@@ -45,34 +45,34 @@ public class W3Wrappers extends SeWrappers {
 			HomePage hp = PageFactory.initElements(driver, HomePage.class);
 			hp.waitForLearning();
 			hp.setclickBrowseTutorial();
+			hp.verifytutorailPage();
 		} catch (Exception e) {
 
 			e.printStackTrace();
 		}
 
 	}
-
-	public String verifyTutorialLandingpage() {
-
-		String verifylandingPage = "";
-		try {
-			verifylandingPage = hp.verifytutorailPage();
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return verifylandingPage;
-
-	}
-		
-	public void search(String text) {
+	
+	public void search(String desiredCourse) {
 		tp =  PageFactory.initElements(driver, TutorialsPage.class);
-		tp.setsearch(text);		
-		tp.javaResults();
+		tp.setsearch(desiredCourse);		
+		tp.javaResults(desiredCourse);
 	}
 
 	public void profilepageValidation() {
+		try
+		{
 		 pp = PageFactory.initElements(driver, ProfilePage.class);
-		 pp.clickprofile();
+		 pp.setclickprofile();
+		 pp.setbioText("Automating w3 Schools using Selenium");
+		 pp.setfirstName("Vijayalakshmi");
+		 pp.setlastName("Vasudevan");
+		 pp.setsubscription();
+		 pp.activityScore();
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
 	}
 }

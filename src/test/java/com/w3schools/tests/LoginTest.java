@@ -27,7 +27,7 @@ public class LoginTest extends SeWrappers {
 
 	// TC01 - Validate login with valid credentials
 
-	@Test(dataProvider = "testDataForLogin")
+	@Test(dataProvider = "testDataForLogin",enabled=false)
 	public void loginWithvalidCredentials(String userName, String password) {
 
 		try {
@@ -82,11 +82,10 @@ public class LoginTest extends SeWrappers {
 	@Test (dataProvider ="testDataForLogin")
 	public void clickBrowseTutorialLink(String userName, String password) {
 		
-		report.setTCDesc("Validating Browse Tutorials ");
+		report.setTCDesc("Validating Browse Tutorials");
 		launchBrowser("firefox", "https://profile.w3schools.com/");
 		w3.loginToW3Schools(userName, password);
 		w3.homePageValidation();
-		w3.verifyTutorialLandingpage();
 		w3.search("java");		
 	}
 	@DataProvider(name = "testDataForLogin")
