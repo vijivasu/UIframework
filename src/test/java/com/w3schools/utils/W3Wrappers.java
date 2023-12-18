@@ -59,15 +59,16 @@ public class W3Wrappers extends SeWrappers {
 		tp.javaResults(desiredCourse);
 	}
 
-	public void profilepageValidation() {
+	public void profilepageValidation(String fname, String lname, String biotext) {
 		try
 		{
 		 pp = PageFactory.initElements(driver, ProfilePage.class);
 		 pp.setclickprofile();
-		 pp.setbioText("Automating w3 Schools using Selenium");
-		 pp.setfirstName("Vijayalakshmi");
-		 pp.setlastName("Vasudevan");
+		 pp.setfirstName(fname);
+		 pp.setlastName(lname);
 		 pp.setsubscription();
+		 pp.clicksaveButton();
+		 pp.setbioText(biotext);
 		 pp.activityScore();
 		}
 		catch(Exception ex)
@@ -75,4 +76,9 @@ public class W3Wrappers extends SeWrappers {
 			ex.printStackTrace();
 		}
 	}
+	
+	
+	
+	
+	
 }

@@ -1,22 +1,26 @@
 package com.w3schools.pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import com.w3schools.utils.SeWrappers;
 
 public class ProfilePage extends SeWrappers {
-
+	
+		
 	@FindBy(xpath="//a[contains(text(),'Profile')]")
 	private WebElement profile;
 
-	@FindBy(xpath = "//input[@placeholder='Add your first name']")
+	@FindBy(xpath = "//label[contains(text(),'First Name')]//following::input")
 	private WebElement firstName;
 
 	@FindBy(xpath = "//input[@placeholder='Add your last name']")
 	private WebElement lastName;
 
-	@FindBy(xpath = "//div[contains(@aria-label, 'true')] /span")
+	@FindBy(xpath = "//input[@type='checkbox']/following::span")
 	private WebElement subscription;
 
 	@FindBy(xpath = "//textarea[@placeholder='text here...']")
@@ -30,7 +34,8 @@ public class ProfilePage extends SeWrappers {
 
 	@FindBy(xpath = "//div[text()='Activity Score']/following::div//input")
 	private WebElement activityScore;
-
+	
+	
 	public WebElement getprofile() {
 		return profile;
 	}
@@ -62,11 +67,30 @@ public class ProfilePage extends SeWrappers {
 	public WebElement getactivityScore() {
 		return activityScore;
 	}
-
+	
+	
 	public void setclickprofile() {
-		//waitForElement(profile, 30);
-		clickWithJavaScript(profile);
-		//click(profile);
+		
+		WebElement iframeElement = driver.findElement(By.xpath("//div[@id='top-nav-bar-placeholder']//following::iframe"));
+		driver.switchTo().frame(iframeElement);
+		//clickWithJavaScript(profile);
+		waitForElement(profile, 10);
+		click(profile);
+	}
+	
+	public void setfirstName(String fname) {
+		waitForElement(firstName, 10);
+		firstName.click();
+		firstName.clear();
+		typeText(firstName, fname);
+	}
+	
+	public void setlastName(String lname) {
+		waitForElement(lastName, 10);
+		lastName.click();
+		lastName.clear();
+		//waitForElement(lastName, 10);
+		typeText(lastName, lname);
 	}
 
 	public void setbioText(String Automation) {
@@ -75,18 +99,16 @@ public class ProfilePage extends SeWrappers {
 
 	}
 
-	public void setfirstName(String fname) {
-		typeText(firstName, fname);
-	}
-
-	public void setlastName(String lname) {
-		typeText(lastName, lname);
-	}
-
 	public void setsubscription() {
-		boolean subs = subscription.isEnabled();
-		System.out.println(subs);
-		click(subscription);
+		
+		if(subscription.isEnabled()) {
+			((JavascriptExecutor) driver).executeScript("arguments[0].disabled=true", subscription);
+			System.out.println("Checkbox is now disabled");
+		}else {
+			System.out.println("checkbox is already disabled");
+		}
+		clickWithJavaScript(subscription);
+		//click(subscription);
 	}
 	
 	public void phoneNumber(String pnum) {

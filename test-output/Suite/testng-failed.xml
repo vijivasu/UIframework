@@ -5,6 +5,8 @@
     <classes>
       <class name="com.w3schools.tests.LoginTest">
         <methods>
+          <include name="loginWithvalidCredentials"/>
+          <include name="loginwithInvalidCredentials"/>
           <include name="clickBrowseTutorialLink"/>
         </methods>
       </class> <!-- com.w3schools.tests.LoginTest -->

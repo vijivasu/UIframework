@@ -14,7 +14,7 @@ public class ReadExcel {
 		Object[][]  data= null;
 		
 		try {
-			data = getDatafromExcel(System.getProperty("user.dir")+"/Excel/testdata.xlsx", "W3Schools");
+			data = getDatafromExcel(System.getProperty("user.dir")+"/TestData/testdata.xlsx", "W3SchoolsLogin_Valid");
 			
 		}catch(Exception e) {
 			
