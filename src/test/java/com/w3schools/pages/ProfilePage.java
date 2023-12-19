@@ -2,6 +2,7 @@ package com.w3schools.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,13 +15,13 @@ public class ProfilePage extends SeWrappers {
 	@FindBy(xpath="//a[contains(text(),'Profile')]")
 	private WebElement profile;
 
-	@FindBy(xpath = "//label[contains(text(),'First Name')]//following::input")
+	@FindBy(xpath = "//input[contains(@id, 'profile-firstname')]")
 	private WebElement firstName;
 
-	@FindBy(xpath = "//input[@placeholder='Add your last name']")
+	@FindBy(xpath = "//input[contains(@id,'profile-lastname')]")
 	private WebElement lastName;
 
-	@FindBy(xpath = "//input[@type='checkbox']/following::span")
+	@FindBy(xpath = "//span[contains(@class,'CheckBox_checkmark')]")
 	private WebElement subscription;
 
 	@FindBy(xpath = "//textarea[@placeholder='text here...']")
@@ -78,18 +79,19 @@ public class ProfilePage extends SeWrappers {
 		click(profile);
 	}
 	
-	public void setfirstName(String fname) {
-		waitForElement(firstName, 10);
-		firstName.click();
+	public void setfirstName(String fname) throws InterruptedException {
+		//Thread.sleep(10000);
+		waitForElement(firstName, 40);
+		click(firstName);
 		firstName.clear();
 		typeText(firstName, fname);
 	}
 	
-	public void setlastName(String lname) {
+	public void setlastName(String lname) throws InterruptedException {
+		//Thread.sleep(20000);
 		waitForElement(lastName, 10);
 		lastName.click();
 		lastName.clear();
-		//waitForElement(lastName, 10);
 		typeText(lastName, lname);
 	}
 
@@ -101,14 +103,17 @@ public class ProfilePage extends SeWrappers {
 
 	public void setsubscription() {
 		
+		/*
 		if(subscription.isEnabled()) {
 			((JavascriptExecutor) driver).executeScript("arguments[0].disabled=true", subscription);
 			System.out.println("Checkbox is now disabled");
 		}else {
 			System.out.println("checkbox is already disabled");
 		}
-		clickWithJavaScript(subscription);
+		*/
+		//clickWithJavaScript(subscription);
 		//click(subscription);
+		actionClick(subscription);
 	}
 	
 	public void phoneNumber(String pnum) {
@@ -124,7 +129,7 @@ public class ProfilePage extends SeWrappers {
 
 	public void clicksaveButton() {
 		waitForElement(saveButton, 10);
-		click(saveButton);
+		actionClick(saveButton);
 	}
 
 }

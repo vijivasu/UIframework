@@ -93,6 +93,7 @@ public class SeWrappers {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
 			wait.until(ExpectedConditions.visibilityOf(ele));
+			wait.until(ExpectedConditions.elementToBeClickable(ele));
 			Reports.reportStep("PASS", "Successfully identified the element");
 			wait.until(ExpectedConditions.visibilityOf(ele));
 		} catch (Exception ex) {
@@ -150,8 +151,10 @@ public class SeWrappers {
 	// actions class
 	public void actionClick(WebElement element) {
 		try {
+			waitForElement(element,20);
 			Actions actionsClass = new Actions(driver);
-			actionsClass.click(element).build().perform();
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
+			actionsClass.moveToElement(element).click().build().perform();
 			Reports.reportStep("PASS", "Click action is performed sucessfully");
 			//System.out.println("Click action is performed sucessfully");
 		} catch (Exception e) {
@@ -365,7 +368,7 @@ public class SeWrappers {
 	public void scrollUp() {
 		try {
 			JavascriptExecutor jsExecutor = (JavascriptExecutor)driver;
-			jsExecutor.executeScript("window.ScrollTo(0,-document.body.scrollHeight);");
+			jsExecutor.executeScript("window.scrollTo(0,-document.body.scrollHeight);");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -375,7 +378,7 @@ public class SeWrappers {
 	public void scrollDown() {
 		try {
 			JavascriptExecutor jsExecutor = (JavascriptExecutor)driver;
-			jsExecutor.executeScript("window.ScrollTo(0,document.body.scrollHeight);");
+			jsExecutor.executeScript("window.scrollTo(0,document.body.scrollHeight);");
 		} catch (Exception e) {
 
 			e.printStackTrace();
@@ -385,7 +388,7 @@ public class SeWrappers {
 	public void scrollLeft() {
 		try {
 			JavascriptExecutor jsExecutor = (JavascriptExecutor)driver;
-			jsExecutor.executeScript("windows.ScrollTo(-document.body.scrollWidth,0);");
+			jsExecutor.executeScript("windows.scrollTo(-document.body.scrollWidth,0);");
 		} catch (Exception e) {
 
 			e.printStackTrace();
@@ -395,13 +398,37 @@ public class SeWrappers {
 	public void scrollRight() {
 		try {
 			JavascriptExecutor jsExecutor = (JavascriptExecutor)driver;
-			jsExecutor.executeScript("windws.ScrollTo(document.body.scrollWidth,0);");
+			jsExecutor.executeScript("windws.scrollTo(document.body.scrollWidth,0);");
 		} catch (Exception e) {
 
 			e.printStackTrace();
 		}
 	}
-
+	
+	public void scrollUpDown(int scrollValue)
+	{
+		try {
+			JavascriptExecutor jsExecutor = (JavascriptExecutor)driver;
+			jsExecutor.executeScript("window.scrollBy(0,"+scrollValue+")");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void scrollLeftRight(int scrollValue)
+	{
+		try {
+			JavascriptExecutor jsExecutor = (JavascriptExecutor)driver;
+			jsExecutor.executeScript("window.scrollBy("+scrollValue+",0);");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
 	public String getTitle() {
 		String title="";
 		JavascriptExecutor jsExecutor = (JavascriptExecutor)driver;
@@ -502,7 +529,8 @@ public class SeWrappers {
 //********************************************************************************************************************************************
 	public void typeText(WebElement ele, String text) {
 		try {
-			//waitForElement(ele, 20);
+			waitForElement(ele, 20);
+			ele.clear();
 			ele.sendKeys(text);
 			Reports.reportStep("PASS", "Successfully types the text in the element");
 

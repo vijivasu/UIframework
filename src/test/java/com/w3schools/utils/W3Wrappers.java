@@ -14,6 +14,7 @@ public class W3Wrappers extends SeWrappers {
 	HomePage hp = null;
 	TutorialsPage tp = null;
 	ProfilePage pp = null;
+	SeWrappers se= new SeWrappers();
 
 	public void loginToW3Schools(String userName, String password) {
 		try {
@@ -64,12 +65,16 @@ public class W3Wrappers extends SeWrappers {
 		{
 		 pp = PageFactory.initElements(driver, ProfilePage.class);
 		 pp.setclickprofile();
+		 se.scrollUpDown(200);
 		 pp.setfirstName(fname);
 		 pp.setlastName(lname);
-		 pp.setsubscription();
-		 pp.clicksaveButton();
+		 Thread.sleep(3000);
+		// pp.setsubscription();
+		 se.scrollUpDown(500);
 		 pp.setbioText(biotext);
 		 pp.activityScore();
+		 pp.clicksaveButton();
+
 		}
 		catch(Exception ex)
 		{
